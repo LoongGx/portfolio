@@ -14,5 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('login'));
 });
+
+Route::name('personal:')->middleware(['auth'])->prefix('personal')->namespace('Portfolio')->group(function(){
+    Route::resource('portfolio', 'PortfolioController');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('home', function(){
+    return view('master');
+})->middleware(['auth'])->name('home');
+
+require __DIR__.'/auth.php';
+
+// Route::get('testquery', function(){
+//     return __DIR__;
+// });
