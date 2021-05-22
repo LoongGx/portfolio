@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 Route::name('personal:')->middleware(['auth'])->prefix('personal')->namespace('Portfolio')->group(function(){
+    Route::get('cvpdf', 'PortfolioController@generateCvPdf')->name('portfolio.generateCvPdf');
+    Route::post('mailcv', 'PortfolioController@mailCV')->name('portfolio.mailcv');
     Route::resource('portfolio', 'PortfolioController');
 });
 

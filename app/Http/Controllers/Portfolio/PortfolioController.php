@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Portfolio;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Mail\MailCV;
+use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class PortfolioController extends Controller
 {
@@ -15,6 +18,34 @@ class PortfolioController extends Controller
     public function index()
     {
         return view('portfolio.index');
+    }
+
+    public function mailCV(Request $request)
+    {
+        $request->validate([
+            'mail' => 'required|email'
+        ]);
+        // Mail::to($request->mail)->send(new MailCV());
+        return redirect(route('personal:portfolio.index'));
+    }
+
+    public function generateCvPdf(Request $request)
+    {
+        // A few settings
+        $image = public_path('img/profile/avatar7.png');
+
+        // Read image path, convert to base64 encoding
+        $imageData = base64_encode(file_get_contents($image));
+
+        // Format the image SRC:  data:{mime};base64,{data};
+        $profile = 'data:'.mime_content_type($image).';base64,'.$imageData;
+
+        $context = [
+            'profile' => $profile
+        ];
+
+        $pdf = PDF::loadView('portfolio.pdf.cv', $context);
+        return $pdf->stream('cv.pdf');
     }
 
     /**

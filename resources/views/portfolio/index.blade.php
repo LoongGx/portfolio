@@ -2,6 +2,16 @@
 
 @section('styles')
 <style>
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0.5;
+}
+
 .main-body {
     padding: 15px;
 }
@@ -49,6 +59,10 @@
 .shadow-none {
     box-shadow: none!important;
 }
+.btn:focus, .btn:active:focus, .btn.active:focus, input[type="email"]:focus{
+    outline:none;
+    box-shadow:none;
+}
 </style>
 @endsection
 
@@ -66,9 +80,9 @@
                             <img src="{{ asset('img/profile/avatar7.png') }}" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>Chen</h4>
-                                <p class="text-secondary mb-1">Full Stack Developer</p>
-                                <p class="text-muted font-size-sm">Jalan O-C-8, Batu Arang, Selangor</p>
-                                <button class="btn btn-sm btn-outline-primary">Download CV</button>
+                                <p class="text-secondary mb-1">Full Stack Web Developer</p>
+                                <p class="text-muted font-size-sm">Batu Arang, Selangor</p>
+                                <a href="{{ route('personal:portfolio.generateCvPdf') }}" target="_blank" class="btn btn-sm btn-outline-primary">Preview CV</a>
                                 <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Mail CV</button>
                             </div>
                         </div>
@@ -80,11 +94,11 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0 d-inline-flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
-                            <span class="text-secondary">Sample Website</span>
+                            <a href="http://shorturl.at/jnDK7" target="_blank" class="text-secondary text-decoration-none">loong-portal</a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0 d-inline-flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github mr-2 icon-inline"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>Github</h6>
-                            <span class="text-secondary">Sample Github</span>
+                            <a href="https://git.io/JsZUb" target="_blank" class="text-secondary text-decoration-none">LoongGx</a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0 d-inline-flex"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter mr-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>Twitter</h6>
@@ -142,13 +156,15 @@
                     </div>
                 </div>
                 
+                <!-- Project Involved Status -->
                 <div class="row gutters-sm">
+                    <!-- First Column -->
                     <div class="col-sm-6 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h6 class="d-flex align-items-center mb-3">
                                     <i class="text-info mr-2">Assignment</i>
-                                    Project Involved Status
+                                    Project Participate Status
                                 </h6>
 
                                 <small>Complaint System (80%)</small>
@@ -178,20 +194,21 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!-- Second Column -->
                     <div class="col-sm-6 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h6 class="d-flex align-items-center mb-3"><i class="text-info mr-2">Assignment</i>Project Involved Status</h6>
+                                <h6 class="d-flex align-items-center mb-3"><i class="text-info mr-2">Assignment</i>Project Participate Status</h6>
 
                                 <small>Shipment System (95%)</small>
                                 <div class="progress mb-3" style="height: 5px">
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 
-                                <small>System 1</small>
+                                <small>Transport System (96%)</small>
                                 <div class="progress mb-3" style="height: 5px">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 96%" aria-valuenow="96" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 
                                 <small>System 2</small>
@@ -228,8 +245,13 @@
             </div>
             
             <div class="modal-body">
-                <input type="email" class="form-control mb-1" placeholder="sample123@email.com">
-                <button class="btn btn-sm btn-outline-success">Send</button>
+                <form action="{{ route('personal:portfolio.mailcv') }}" method="POST" novalidate>
+                    @csrf
+                    <div class="input-group">
+                        <input type="email" name="mail" class="form-control" placeholder="sample123@email.com">
+                        <button class="btn btn-sm btn-outline-success" type="submit">Send</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -237,98 +259,6 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-const ctx = document.getElementById('myExpChart');
-const skillChart = document.getElementById('mySkillChart');
-
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['PHP', 'Python', 'JS', 'HTML', 'CSS'],
-        datasets: [{
-            label: '',
-            data: [10, 10, 10, 10, 10],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        
-    }
-});
-
-var mySkillChart = new Chart(skillChart, {
-    type: 'bar',
-    data: {
-        labels: ['PHP', 'Python', 'JS', 'HTML', 'CSS'],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [10, 10, 10, 10, 10],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    },
-});
-
-const aboutMe = document.getElementById('aboutMe');
-const myExp = document.getElementById('myExp');
-
-aboutMe.addEventListener('click', function(){
-    document.getElementById('aboutMeSection').scrollIntoView({ block: 'end',  behavior: 'smooth' });
-});
-
-myExp.addEventListener('click', function(){
-    document.getElementById('myExpSection').scrollIntoView({ block: 'end',  behavior: 'smooth' });
-});
 </script>
 @endsection
-<!-- 
-    <h3 class="text-center font-bold text-lg sm:text-left">About Me</h3>
-    <hr class="my-4">
-    <div class="grid sm:grid-cols-2">
-        <div>
-            <img class="w-48 m-auto" src="{{ asset('img/profile/img_avatar.png') }}" alt="">
-        </div>
-        <div class="py-4 text-left">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa animi numquam pariatur vitae quaerat excepturi, minima aliquid illo non rem sapiente accusantium impedit tempora consequuntur incidunt corporis beatae quod? Fugiat.</p>
-        </div>
-    </div>
- -->
