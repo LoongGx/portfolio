@@ -83,7 +83,7 @@
                                 <p class="text-secondary mb-1">Full Stack Web Developer</p>
                                 <p class="text-muted font-size-sm">Batu Arang, Selangor</p>
                                 <a href="{{ route('personal:portfolio.generateCvPdf') }}" target="_blank" class="btn btn-sm btn-outline-primary">Preview CV</a>
-                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Mail CV</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#mailModal">Mail CV</button>
                             </div>
                         </div>
                     </div>
@@ -211,9 +211,9 @@
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: 96%" aria-valuenow="96" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 
-                                <small>System 2</small>
+                                <small>QrCode Generator System (99%)</small>
                                 <div class="progress mb-3" style="height: 5px">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 99%" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 
                                 <small>System 3</small>
@@ -236,22 +236,23 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="mailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mailModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Mail CV</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="mailModalLabel">Mail CV</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnClosed"></button>
             </div>
             
             <div class="modal-body">
-                <form action="{{ route('personal:portfolio.mailcv') }}" method="POST" novalidate>
-                    @csrf
-                    <div class="input-group">
-                        <input type="email" name="mail" class="form-control" placeholder="sample123@email.com">
-                        <button class="btn btn-sm btn-outline-success" type="submit">Send</button>
-                    </div>
-                </form>
+                <div class="alert alert-dismissible fade" role="alert" id="mailMsg" style="display:none;">
+                    <strong id="msg"></strong>
+                    <button type="button" class="btn-close" id="errCloseBtn"></button>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="mail" class="form-control" placeholder="sample123@email.com" id="mail">
+                    <button type="button" class="btn btn-sm btn-outline-success" id="sendMail">Send</button>
+                </div>
             </div>
         </div>
     </div>
@@ -260,5 +261,58 @@
 
 @section('scripts')
 <script>
+const sendMail = document.getElementById("sendMail");
+var mail = document.getElementById("mail");
+sendMail.addEventListener("click", sendCv);
+
+document.getElementById("errCloseBtn").addEventListener("click", function(){
+    document.getElementById("mailMsg").style.display = "none";
+});
+
+document.getElementById("btnClosed").addEventListener("click", function(){
+    document.getElementById("mail").value = "";
+})
+function sendCv(){
+
+    let headers = {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+    };
+
+    var data = {
+        "email": mail.value
+    };
+    
+    fetch("{{ route('personal:portfolio.mailcv') }}", {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(data)
+    })
+    .then((response) => {
+        if (response.ok) {
+            return response.json();
+        }else{
+            throw response
+        }
+    })
+    .then(function(data){ 
+        document.getElementById("mailMsg").classList.add("alert-success");
+        document.getElementById("mailMsg").style.display = "block";
+        document.getElementById("mailMsg").classList.add("show");
+        document.getElementById("msg").innerHTML = "Email has been delivered to "+data.mail+" successfully"
+        document.getElementById("mail").value = "";
+    })
+    .catch( err => {
+        err.json().then( errMsg => {
+            document.getElementById("mailMsg").classList.add("alert-danger");
+            document.getElementById("mailMsg").style.display = "block";
+            document.getElementById("mailMsg").classList.add("show");
+
+            document.getElementById("msg").innerHTML = errMsg.errors.email[0];
+        })
+    });
+
+}
 </script>
 @endsection

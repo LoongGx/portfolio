@@ -7,18 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailCV extends Mailable
+class MailCv extends Mailable
 {
     use Queueable, SerializesModels;
-
+    protected $pdf;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($pdf)
     {
-        //
+        $this->pdf = $pdf;
     }
 
     /**
@@ -28,6 +28,10 @@ class MailCV extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from("kuokloong220294@gmail.com")
+                    ->markdown('emails.mail_cv')
+                    ->attachData($this->pdf->output(), 'chen_kuok_loong_cv.pdf', [
+                        'mime' => 'application/pdf',
+                    ]);
     }
 }
