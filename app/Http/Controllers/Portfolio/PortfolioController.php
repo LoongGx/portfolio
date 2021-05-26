@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Portfolio;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\MailCV;
+use App\Jobs\MailCvJob;
 use Mail;
 use PDF;
 use Response;
@@ -34,14 +35,17 @@ class PortfolioController extends Controller
 
             // mail logic here
 
-            // cv pdf view
-            $image = public_path('img/profile/avatar7.png');
-            $imageData = base64_encode(file_get_contents($image));
-            $profile = 'data:'.mime_content_type($image).';base64,'.$imageData;
-            $context = ['profile' => $profile];
-            $pdf = PDF::loadView('portfolio.pdf.cv', $context);
+            // // cv pdf view
+            // $image = public_path('img/profile/avatar7.png');
+            // $imageData = base64_encode(file_get_contents($image));
+            // $profile = 'data:'.mime_content_type($image).';base64,'.$imageData;
+            // $context = ['profile' => $profile];
+            // $pdf = PDF::loadView('portfolio.pdf.cv', $context);
+            
+            // Job Run
+            MailCvJob::dispatch($request->email)->onConnection('mail');
 
-            Mail::to($request->email)->send(new MailCV($pdf));
+            // Mail::to($request->email)->send(new MailCV($pdf));
 
             $res['status'] = 'Success';
             $res['mail'] = $request->email;
