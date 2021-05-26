@@ -275,6 +275,7 @@ document.getElementById("btnClosed").addEventListener("click", function(){
 function sendCv(){
 
     let headers = {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
         "X-Requested-With": "XMLHttpRequest",
         "X-CSRF-TOKEN": "{{ csrf_token() }}"
