@@ -16,7 +16,7 @@
     <!-- Script -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="relative bg-center bg-cover bg-no-repeat bg-fixed" style="background-image: url('{{ asset('img/bg/sunset_bg.jpg') }}')">
+<body class="relative bg-center bg-cover bg-no-repeat bg-fixed" style="background-image: url('{{ asset('img/bg/sunset_bg_compress.jpg') }}')">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('personal:portfolio.index') }}">PORTFOLIO</a>
