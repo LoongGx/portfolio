@@ -84,16 +84,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    An ambitious problem solver with a 
-                                    passion for online businesses, and who
-                                    would like to join a team of like-
-                                    minded developers. Harry has much
-                                    experience of creating both logical and
-                                    innovative solutions to complex web
-                                    problems. She is thorough and precise
-                                    in everything she does, and has a keen
-                                    interest in technology and mobile
-                                    applications, plus user experience.
+                                    I am Chen who interest to learn many new and different technology.
+                                    I am currently working as a Web Developer and gain alot of knowledge from this company.
+                                    Basically, I involve in Designing workflow and developing user interfaces,
+                                    testing, debugging, and training my colleague how to use it with the system i build for them.
                                 </td>
                             </tr>
 
@@ -109,7 +103,7 @@
                                     <span style="">HTML, CSS, JS, JQUERY</span><br><br>
 
                                     <strong>Back-end</strong><br>
-                                    <span style="">PHP, PYTHON, JAVA</span><br><br>
+                                    <span style="">PHP, PYTHON</span><br><br>
 
                                     <strong>Database</strong><br>
                                     <span style="">MYSQL, SQLITE</span><br><br>
@@ -118,7 +112,7 @@
                                     <span style="">LARAVEL, DJANGO</span><br><br>
 
                                     <strong>Others</strong><br>
-                                    <span style="">BOOTSTRAP, TAILWIND, GIT, NPM, PIP, COMPOSER</span><br><br>
+                                    <span style="">BOOTSTRAP, TAILWIND, GIT, NPM, PIP, COMPOSER, RASPBIAN OS</span><br><br>
                                 </td>
                             </tr>
 
@@ -172,7 +166,8 @@
                                         <li>Experienced in using Django Framework to build Web Application</li>
                                         <li>Experienced in using Bootstrap 4&5 CSS to design Web Application</li>
                                         <li>Experienced in using Tailwind CSS to design Web Application</li>
-                                        <li>Experienced in using Tailwind CSS to design Web Application</li>
+                                        <li>Experienced in using Linux to handle Web Server</li>
+                                        <li>Experienced in using RabbitMQ to handle Queue Server</li>
                                         <li>Experienced in using kivy python library to build small app for raspberry pi</li>
                                         <li>Experienced in using GIT to control version of the project</li>
                                     </ul>
