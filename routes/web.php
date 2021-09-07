@@ -21,7 +21,12 @@ Route::name('personal:')->middleware(['auth'])->prefix('personal')->namespace('P
     Route::get('cvpdf', 'PortfolioController@generateCvPdf')->name('portfolio.generateCvPdf');
     Route::post('mailcv', 'PortfolioController@mailCV')->name('portfolio.mailcv');
     Route::resource('portfolio', 'PortfolioController');
+    Route::resource('role', 'RoleController')->middleware(['admin']);
+    Route::resource('permission', 'PermissionController')->middleware(['admin']);
+    Route::resource('user', 'UserController')->middleware(['admin']);
 });
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,3 +41,7 @@ require __DIR__.'/auth.php';
 // Route::get('testquery', function(){
 //     return __DIR__;
 // });
+
+Route::get('testpage', function(){
+    return view('library_mgmt.main-app');
+});

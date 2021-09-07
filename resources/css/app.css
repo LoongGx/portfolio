@@ -4,3 +4,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+    input {
+        @apply p-1 w-full border border-gray-500 outline-none;
+    }
+    input:focus{
+        @apply border-gray-700;
+    }
+    .error{
+        @apply text-red-600;
+    }
+}
