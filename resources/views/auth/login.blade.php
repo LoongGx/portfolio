@@ -7,19 +7,19 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-3 grid grid-row-3">
-                <label for="email" class="">Email</label>
-                <input id="email" class="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email" value="{{ old('email') }}">
+                <label for="email" class="mb-1">Email</label>
+                <input id="email" class="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email" value="{{ old('email') }}" placeholder="guest@testmail.com">
                 @error('email')
                 <div class="error">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="mb-4 grid grid-row-2">
-                <div class="flow-root">
+                <div class="flow-root mb-1">
                     <label for="password" class="float-left">Password</label>
                     <a class="float-right text-blue-500" href="{{ route('password.request') }}">Forgot Password?</a>
                 </div>
-                <input id="password" class="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" name="password">
+                <input id="password" class="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" name="password" placeholder="abcd1234">
                 @error('password')
                 <div class="error">{{ $message }}</div>
                 @enderror

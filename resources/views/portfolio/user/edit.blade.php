@@ -72,18 +72,20 @@
 
             <!-- ROLE -->
             <h3 class="text-xl font-semibold bg-gray-200 p-2 my-2">Roles</h3>
-            @foreach ($roles as $role)
-            <div class="col-sm-12">
-                <div class="form-check form-check-inline">
+            
+            
+            <div class="grid grid-cols-1 md:grid-cols-4">
+                @foreach ($roles as $role)
+                <div>
                     @isset($user)
-                    <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}" {{ $user->roles->contains($role->id) ? 'checked' : '' }}>
+                    <input id="role{{ $role->id }}" type="checkbox" name="roles[]" value="{{ $role->id }}" {{ $user->roles->contains($role->id) ? 'checked' : '' }}>
                     @else
-                    <input class="form-check-input" type="checkbox" name="roles[]" value="{{ $role->id }}">
+                    <input id="role{{ $role->id }}" type="checkbox" name="roles[]" value="{{ $role->id }}">
                     @endisset
-                    <label class="form-check-label" for="">{{ $role->display_name }}</label>
+                    <label for="role{{ $role->id }}">{{ $role->display_name }}</label>
                 </div>
-            </div>
-            @endforeach
+                @endforeach
+            </div>            
 
             <div class="w-full mt-3">
                 <a href="{{ route('personal:user.index') }}" class="btn btn-sm btn-secondary">Back</a>
