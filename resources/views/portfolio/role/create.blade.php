@@ -1,5 +1,9 @@
 @extends("layouts.portfolio_layouts.main")
 
+@section('title')
+Create Role
+@endsection
+
 @section("content")
 <div class="card mt-3">
     <div class="card-header text-end">

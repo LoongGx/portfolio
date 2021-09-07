@@ -1,5 +1,9 @@
 @extends("layouts.portfolio_layouts.main")
 
+@section('title')
+Edit User
+@endsection
+
 @section("content")
 <div class="card mt-3">
     <div class="card-header text-start">
@@ -32,14 +36,14 @@
                         @enderror
                     </div>
                     <div>
-                        <label for="username" class="w-full"><strong>Username</strong></label>
+                        <label for="username" class="w-full required"><strong>Username</strong></label>
                         <x-alt-input name="username" value="{{ $user->username }}" id="username"/>
                         @error('username')
                             <div class="text-red-600">{{ $message }}</div>
                         @enderror
                     </div>
                     <div>
-                        <label for="email" class="w-full"><strong>Email</strong></label>
+                        <label for="email" class="w-full required"><strong>Email</strong></label>
                         <x-alt-input type="email" name="email" value="{{ $user->email }}" id="email"/>
                         @error('email')
                             <div class="text-red-600">{{ $message }}</div>
