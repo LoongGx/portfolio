@@ -21,9 +21,9 @@ Route::name('personal:')->middleware(['auth'])->prefix('personal')->namespace('P
     Route::get('cvpdf', 'PortfolioController@generateCvPdf')->name('portfolio.generateCvPdf');
     Route::post('mailcv', 'PortfolioController@mailCV')->name('portfolio.mailcv');
     Route::resource('portfolio', 'PortfolioController');
-    Route::resource('role', 'RoleController');
-    Route::resource('permission', 'PermissionController');
-    Route::resource('user', 'UserController');
+    Route::resource('role', 'RoleController')->middleware(['admin']);
+    Route::resource('permission', 'PermissionController')->middleware(['admin']);
+    Route::resource('user', 'UserController')->middleware(['admin']);
 });
 
 
