@@ -19,7 +19,7 @@ class AddPolymorphicRelationToUsersTable extends Migration
             // $table->string('contact', 20);
             $table->string("first_name", 150)->after('name')->nullable();
             $table->string("last_name", 150)->after('first_name')->nullable();
-            $table->string("ip_address", 15)->after('id');
+            $table->string("ip_address", 15)->after('id')->nullable();
             $table->string("company")->nullable();
             $table->boolean('confirmed')->default(true);
             $table->nullableMorphs('entity');
